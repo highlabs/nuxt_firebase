@@ -1,33 +1,12 @@
 <template>
   <section class="container">
     <div>
-      <h1 class="title">
-        Nuxt Firebase
-      </h1>
-      <p>
-        Your profile:
-      </p>
-      <div v-if="profile">
-        <h5>
-          {{ profile.displayName }}
-        </h5>
-        <p>
-          {{ profile.email }}
-        </p>
-        <img 
-          :src="profile.avatar" 
-          alt="">
-          
-      </div>
-      <div>
-        <Btn 
-          :click="googleLogin"
-          title="Login With Google"/>
-        <Btn 
-          :click="logout"
-          title="Logout"/>
-      </div>
+      <h1 class="title">Nuxt Firebase</h1>
+      <nuxt-link v-if="profile" to="/profile">Profile</nuxt-link>
 
+      <div>
+        <Btn v-if="!profile" :click="googleLogin" title="Login With Google"/>
+      </div>
     </div>
   </section>
 </template>
@@ -48,9 +27,6 @@ export default {
   methods: {
     googleLogin: function() {
       this.$store.dispatch('loginGoogle')
-    },
-    logout: function() {
-      this.$store.dispatch('logout')
     }
   }
 }
