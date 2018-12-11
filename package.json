@@ -10,7 +10,12 @@
     "start": "cross-env NODE_ENV=production node server/index.js",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "clean": "rm -rf public functions/nuxt/",
+    "copyAssets": "cp -R functions/nuxt/dist/client/ public/",
+    "firebase:install": "cd functions/ && npm install && cd ..",
+    "firebase:deploy": "firebase deploy --only functions,hosting",
+    "firebase:serve": "firebase serve --only functions,hosting"
   },
   "dependencies": {
     "cookieparser": "^0.1.0",
