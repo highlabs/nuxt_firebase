@@ -82,3 +82,6 @@ dist
 
 # firebase
 /utils/firebase.js
+
+/functions/nuxt
+/public
