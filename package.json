@@ -11,8 +11,8 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "clean": "rm -rf public functions/nuxt/",
-    "copyAssets": "cp -R functions/nuxt/dist/client/ public/",
+    "clean": "rm -rf public .nuxt",
+    "copyAssets": "cp -R .nuxt/dist/client/ public/",
     "firebase:install": "cd functions/ && npm install && cd ..",
     "firebase:deploy": "firebase deploy --only functions,hosting",
     "firebase:serve": "firebase serve --only functions,hosting"

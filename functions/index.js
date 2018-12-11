@@ -4,7 +4,7 @@ const { Nuxt } = require('nuxt')
 
 const config = {
   dev: false,
-  buildDir: 'nuxt',
+  buildDir: '../.nuxt',
   build: {
     publicPath: '../public'
   }
