@@ -10,7 +10,7 @@
         <img :src="profile.avatar" alt>
       </div>
       <div>
-        <Btn :click="logout" title="Logout"/>
+        <Btn :click="signout" title="Logout"/>
       </div>
     </div>
   </section>
@@ -33,9 +33,6 @@ export default {
   },
   methods: {
     ...mapActions(['logout']),
-    googleLogin: function() {
-      this.$store.dispatch('loginGoogle')
-    },
     async signout() {
       await this.logout()
       this.$router.push('/')

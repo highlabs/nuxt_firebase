@@ -1,8 +1,10 @@
+import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from '~/utils/firebase'
 import Cookies from 'js-cookie'
 import { getUserFromCookie } from '@/utils/userHelper'
 
+Vue.use(Vuex)
 const db = firebase.firestore()
 db.settings({ timestampsInSnapshots: true })
 
