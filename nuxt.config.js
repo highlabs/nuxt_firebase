@@ -1,4 +1,5 @@
 const pkg = require('./package')
+const isDev = !(process.env.NODE_ENV === 'production')
 
 module.exports = {
   mode: 'universal',
@@ -40,7 +41,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    publicPath: '/',
+    publicPath: isDev ? '/public' : '/',
     /*
     ** You can extend webpack config here
     */
