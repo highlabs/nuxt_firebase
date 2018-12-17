@@ -4,6 +4,9 @@
   "description": "Just a firebase starter project",
   "author": "dobrado",
   "private": true,
+  "engines": {
+    "node": "8"
+  },
   "scripts": {
     "dev": "cross-env NODE_ENV=development node server/index.js --watch server",
     "build": "nuxt build",
