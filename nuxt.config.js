@@ -1,4 +1,6 @@
 const pkg = require('./package')
+const nodeExternals = require('webpack-node-externals')
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
 module.exports = {
   mode: 'universal',
@@ -29,7 +31,7 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [],
+  plugins: ['~/plugins/vuetify.js'],
 
   /*
   ** Nuxt.js modules
@@ -43,6 +45,8 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+    transpile: [/^vuetify/],
+    plugins: [new VuetifyLoaderPlugin()],
     extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
@@ -52,6 +56,13 @@ module.exports = {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
+      }
+      if (process.server) {
+        config.externals = [
+          nodeExternals({
+            whitelist: [/^vuetify/]
+          })
+        ]
       }
     }
   }
