@@ -82,3 +82,5 @@ dist
 
 # firebase
 /utils/firebase.js
+.firebaserc
+.firebase
