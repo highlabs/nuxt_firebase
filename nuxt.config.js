@@ -15,7 +15,14 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: pkg.description }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
+      }
+    ]
   },
 
   /*
@@ -26,7 +33,7 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: [],
+  css: ['~/assets/style/app.styl'],
 
   /*
   ** Plugins to load before mounting the App
@@ -46,6 +53,7 @@ module.exports = {
     ** You can extend webpack config here
     */
     transpile: [/^vuetify/],
+    extractCSS: true,
     plugins: [new VuetifyLoaderPlugin()],
     extend(config, ctx) {
       // Run ESLint on save
