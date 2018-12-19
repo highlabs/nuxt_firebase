@@ -10,7 +10,9 @@ const createStore = () => {
   return new Vuex.Store({
     state: () => ({
       user: null,
-      profile: null
+      profile: null,
+      drawer: false,
+      darkLayout: false
     }),
     getters: {
       uid(state) {
@@ -32,6 +34,9 @@ const createStore = () => {
       },
       setUser: (state, value) => {
         state.user = value
+      },
+      toggleDrawer(state, value) {
+        state.drawer = value
       }
     },
     actions: {

@@ -1,7 +1,5 @@
 <template>
-  <button @click.prevent="click">
-    {{ title }}
-  </button>
+  <v-btn @click.prevent="click">{{ title }}</v-btn>
 </template>
 
 <script>

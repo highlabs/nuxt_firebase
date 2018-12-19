@@ -1,8 +1,7 @@
 <template>
   <section class="container">
     <div>
-      <h1 class="title">Nuxt Firebase</h1>
-      <nuxt-link v-if="profile" to="/">Home</nuxt-link>
+      <h1 class="title">Your profile</h1>
       <p>Your profile:</p>
       <div v-if="profile">
         <h5>{{ profile.displayName }}</h5>
