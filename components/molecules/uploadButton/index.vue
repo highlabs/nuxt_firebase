@@ -46,6 +46,10 @@ export default {
       default: '',
       type: String,
       required: true
+    },
+    path: {
+      default: 'images',
+      type: String
     }
   },
   data() {
@@ -72,7 +76,7 @@ export default {
       this.fileName = file.name
       this.uploading = true
       this.uploadTask = firestorage
-        .ref(`images/${this.generateUUID()}/${file.name}`)
+        .ref(`${this.path}/${this.generateUUID()}/${file.name}`)
         .put(file)
     },
     deleteImage() {
