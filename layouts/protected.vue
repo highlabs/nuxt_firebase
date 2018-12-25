@@ -1,5 +1,5 @@
 <template>
-  <v-app dark="darkLayout">
+  <v-app :dark="darkLayout">
     <Drawer/>
     <v-toolbar fixed app>
       <v-toolbar-side-icon @click="drawer = !drawer"/>

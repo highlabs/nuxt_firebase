@@ -12,7 +12,8 @@ const createStore = () => {
       user: null,
       profile: null,
       drawer: false,
-      darkLayout: false
+      darkLayout: false,
+      uploadedImageURL: ''
     }),
     getters: {
       uid(state) {
@@ -37,10 +38,17 @@ const createStore = () => {
       },
       toggleDrawer(state, value) {
         state.drawer = value
+      },
+      setAvatar(state, url) {
+        state.user.avatar = url
+        state.profile.avatar = url
+      },
+      imageURL(state, url) {
+        state.uploadedImageURL = url
       }
     },
     actions: {
-      async nuxtServerInit({ commit }, { req }) {
+      async nuxtServerInit({ commit, dispatch }, { req }) {
         const user = getUserFromCookie(req)
         if (user) {
           await commit('setUser', {
@@ -48,11 +56,7 @@ const createStore = () => {
             email: user.email,
             displayName: user.name
           })
-          await commit('setProfile', {
-            avatar: user.picture,
-            email: user.email,
-            displayName: user.name
-          })
+          await dispatch('loadProfile', user.user_id)
         }
       },
       loginGoogle({ commit, dispatch }) {
@@ -96,6 +100,25 @@ const createStore = () => {
         Cookies.remove('access_token')
         commit('setProfile', null)
         commit('setUser', null)
+      },
+      async loadProfile({ commit }, id) {
+        const profileRef = await db
+          .collection('profiles')
+          .doc(id)
+          .get()
+        commit('setProfile', profileRef.data())
+      },
+      async avatarUpload({ state, commit }, url) {
+        const user = state.user
+        const profileRef = db.collection('profiles').doc(user.uid)
+
+        profileRef.update({
+          avatar: url
+        })
+
+        profileRef.onSnapshot(function(doc) {
+          commit('setProfile', doc.data())
+        })
       }
     }
   })

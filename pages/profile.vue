@@ -8,6 +8,7 @@
         <p>{{ profile.email }}</p>
         <img :src="profile.avatar" alt>
       </div>
+      <UploadButton actionName="avatarUpload">Upload Avatar</UploadButton>
       <div>
         <Btn :click="logout" title="Logout"/>
       </div>
@@ -18,12 +19,14 @@
 <script>
 import { mapActions } from 'vuex'
 import Btn from '~/components/atoms/button'
+import UploadButton from '~/components/molecules/uploadButton'
 
 export default {
   name: 'Profile',
   layout: 'protected',
   components: {
-    Btn
+    Btn,
+    UploadButton
   },
   computed: {
     profile() {
@@ -36,8 +39,8 @@ export default {
       this.$store.dispatch('loginGoogle')
     },
     async signout() {
-      await this.logout()
       this.$router.push('/')
+      await this.logout()
     }
   }
 }
